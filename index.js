@@ -3,8 +3,6 @@ import { MongoClient } from 'mongodb'
 const client = new MongoClient("mongodb://127.0.0.1:27017/");
 let database = client.db(process.env.DB_NAME)
 const notes = database.collection(process.env.DB_COLLECTION_NAME)
-const allNotes = await notes.find({}).toArray();
-console.log(allNotes)
 
 import "dotenv/config";
 
@@ -15,8 +13,9 @@ const appName = process.env.PROJECT_NAME;
 
 app.use(express.static('public'))
 
-app.get("/", (req, res) => {
-  res.send("hello world")
+app.get("/", async (req, res) => {
+    const allNotes = await notes.find({}).toArray();
+  res.render("home.ejs", {notes: allNotes})
 });
 
 app.listen(port, () => {

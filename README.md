@@ -1,4 +1,4 @@
-# Project Name
+# MongoDB Todo List
 
 A todo list app that uses MongoDB as its database engine.
 
