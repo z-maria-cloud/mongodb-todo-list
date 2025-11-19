@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 
 const client = new MongoClient(process.env.DB_ADDRESS);
 let database = client.db(process.env.DB_NAME);
@@ -15,14 +15,24 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", async (req, res) => {
-  const allNotes = await notes.find({}).sort({timestamp: -1}).toArray();
-  console.log(allNotes);
+  const allNotes = await notes.find({}).sort({"timestamp": -1 }).toArray();
   res.render("home.ejs", { notes: allNotes });
 });
 
+app.get("/delete/:del", async (req, res) => {
+  let deleteId = req.params.del;
+  let deleteThisId = await notes.deleteOne({ _id: new ObjectId(deleteId) })
+  res.redirect("/");
+});
+
 app.post("/new-note", async (req, res) => {
-  let newNote = notes.insertOne({title: req.body.title, priority: req.body.priority, content: req.body.content, timestamp: Date.now()})
-  res.redirect("/")
+  let newNote = await notes.insertOne({
+    "title": req.body.title,
+    "priority": req.body.priority,
+    "content": req.body.content,
+    "timestamp": Date.now(),
+  });
+  res.redirect("/");
 });
 
 app.listen(port, () => {
