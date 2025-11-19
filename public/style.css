@@ -93,3 +93,13 @@ input {
 .orange {
     color: var(--orange);
 }
+
+@media (max-width: 800px) {
+  body {
+    text-align: center;
+  }
+  
+    .notes-box {
+    display: grid;
+  }
+}
