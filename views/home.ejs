@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Todo:</h1>
+    <h2 class="fancy title">Add New</h2>
 
     <form action="new-note" method="post">
       <label for="title">What do you need to do?</label>
@@ -19,16 +19,20 @@
       <input type="text" id="content" name="content" />
       <input id="submit" type="submit" value="Create new" />
     </form>
+    <h2 class="fancy title">Todo:</h2>
 
+    <div class="notes-box">
     <% if (notes.length != 0) { %> <% for (const i in notes) { %>
-    <div class="note-container">
-      <h2><%= notes[i].title %></h2>
-      <p>Priority: <%= notes[i].priority %></p>
-      <p><%= notes[i].content %></p>
-      <a href="delete/<%= notes[i]._id.toString() %>">Delete</a>
+      <div class="note-container">
+        <h2 class="fancy"><%= notes[i].title %></h2>
+        <p>Priority: <%= notes[i].priority %></p>
+        <p class="details"><%= notes[i].content %></p>
+        <a href="delete/<%= notes[i]._id.toString() %>">Delete</a>
+      </div>
+      <% } %>
     </div>
-    <% } %> <% } else { %>
-    <h2>There are no notes yet!</h2>
+    <% } else { %>
+    <h2 class="fancy title orange">There are no notes yet!</h2>
     <% } %>
   </body>
 </html>

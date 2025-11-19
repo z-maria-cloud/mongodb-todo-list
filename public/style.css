@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --orange: #ff6000;
+  --violet: rebeccapurple;
+}
+
+* {
+  font-family: "Noto Sans", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  padding: 2rem 10%;
+}
+
+.title {
+  font-size: 4rem;
+  color: var(--violet);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  height: 2rem;
+}
+
+#submit {
+  width: fit-content;
+  background-color: var(--orange);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  color: white;
+  margin: 1rem 0;
+  height: fit-content;
+  font-weight: 700;
+  transition: ease 0.2s all;
+}
+
+#submit:hover {
+  background-color: #ffac7a;
+  cursor: grab;
+}
+
+.fancy {
+  font-family: "Caveat", cursive;
+}
+
+.notes-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.note-container {
+  border-style: dashed;
+  border-radius: 10px;
+  border-color: #ffd0b4;
+  border-width: 2px;
+  margin: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.note-container a {
+  width: fit-content;
+  background: var(--violet);
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.note-container .details {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 0.5rem;
+  color: #595858;
+}
+
+.note-container h2 {
+  color: var(--orange);
+  font-size: 2rem;
+}
+
+.orange {
+    color: var(--orange);
+}
