@@ -15,13 +15,13 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", async (req, res) => {
-  const allNotes = await notes.find({}).toArray();
+  const allNotes = await notes.find({}).sort({timestamp: -1}).toArray();
   console.log(allNotes);
   res.render("home.ejs", { notes: allNotes });
 });
 
 app.post("/new-note", async (req, res) => {
-  let newNote = notes.insertOne({title: req.body.title, priority: req.body.priority, content: req.body.content})
+  let newNote = notes.insertOne({title: req.body.title, priority: req.body.priority, content: req.body.content, timestamp: Date.now()})
   res.redirect("/")
 });
 
