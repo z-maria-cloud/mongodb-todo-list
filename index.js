@@ -1,8 +1,8 @@
-import { MongoClient } from 'mongodb'
+import { MongoClient } from "mongodb";
 
-const client = new MongoClient("mongodb://127.0.0.1:27017/");
-let database = client.db(process.env.DB_NAME)
-const notes = database.collection(process.env.DB_COLLECTION_NAME)
+const client = new MongoClient(process.env.DB_ADDRESS);
+let database = client.db(process.env.DB_NAME);
+const notes = database.collection(process.env.DB_COLLECTION_NAME);
 
 import "dotenv/config";
 
@@ -11,11 +11,18 @@ const app = express();
 const port = process.env.PROJECT_PORT;
 const appName = process.env.PROJECT_NAME;
 
-app.use(express.static('public'))
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", async (req, res) => {
-    const allNotes = await notes.find({}).toArray();
-  res.render("home.ejs", {notes: allNotes})
+  const allNotes = await notes.find({}).toArray();
+  console.log(allNotes);
+  res.render("home.ejs", { notes: allNotes });
+});
+
+app.post("/new-note", async (req, res) => {
+  let newNote = notes.insertOne({title: req.body.title, priority: req.body.priority, content: req.body.content})
+  res.redirect("/")
 });
 
 app.listen(port, () => {
@@ -24,4 +31,3 @@ app.listen(port, () => {
   }
   console.log(`${appName} is listening on port ${port}`);
 });
-

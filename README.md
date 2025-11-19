@@ -10,7 +10,8 @@ Create a `.env` file containing `PROJECT_NAME` and `PROJECT_PORT` before using. 
 
 ```
 PROJECT_PORT=3000
-PROJECT_NAME="Request Info"
+PROJECT_NAME="Todo List App"
+DB_ADDRESS="mongodb://127.0.0.1:27017/"
 DB_COLLECTION_NAME="todo"
 DB_NAME="todolist"
 ```

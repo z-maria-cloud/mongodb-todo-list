@@ -9,12 +9,24 @@
   </head>
   <body>
     <h1>Todo:</h1>
+
+    <form action="new-note" method="post">
+      <label for="title">What do you need to do?</label>
+      <input type="text" id="title" name="title" />
+      <label for="priority">Priority:</label>
+      <input type="text" id="priority" name="priority" />
+      <label for="content">Details</label>
+      <input type="text" id="content" name="content" />
+      <input id="submit" type="submit" value="Create new" />
+    </form>
+
     <% if (notes.length != 0) { %>
     <% for (const i in notes) { %>
     <div class="note-container">
       <h2><%= notes[i].title %></h2>
       <p>Priority: <%= notes[i].priority %></p>
       <p><%= notes[i].content %></p>
+      <a href="delete/<%= notes[i]._id.toString() %>">Delete</a>
     </div>
     <% } %>
     <% } else { %>
